@@ -10,7 +10,7 @@ runcmd:
   - usermod -aG docker ubuntu
 
   # Install Kind
-  - "[ $(uname -m) = x86_64 ] && sudo curl -Lo /usr/local/bin/kind ./kind https://kind.sigs.k8s.io/dl/v0.29.0/kind-linux-amd64"
+  - curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/v0.29.0/kind-linux-amd64
   - sudo chmod +x /usr/local/bin/kind
 
   # Install kubectl
