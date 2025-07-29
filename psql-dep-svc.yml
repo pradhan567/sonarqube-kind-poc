@@ -17,24 +17,30 @@ spec:
         app: psql
     spec:
       containers:
-      - name: psql
-        image: postgres:13
-        ports:
-          containerPort: 5432 
-        env:
-          valueFrom:
-            configMapKeyRef:
-            - name: psql-configmap
-              key: POSTGRES_DB 
-            - name: psql-configmap
-              key: POSTGRES_USER
-            secretKeyRef:
-            - name: postgres-password
-              key: password
-        volumeMounts:
+        - name: psql
+          image: postgres:13
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: psql-configmap
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: psql-configmap
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: password
+          volumeMounts:
             - name: psql-volume
               mountPath: /var/lib/postgresql/data
       volumes:
-        name: psql-volume
-        persistentVolumeClaim:
-          claimName: pvc-psql
+        - name: psql-volume
+          persistentVolumeClaim:
+            claimName: pvc-psql

@@ -1,0 +1,8 @@
+# Ignore all .terraform directories
+.terraform/
+
+
+## Ignore pem files
+*.pem
+*.pub
+
