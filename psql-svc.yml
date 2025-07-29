@@ -5,6 +5,6 @@ metadata:
   namespace: sonarqube
 spec:
   selector:
-    app: sonar-psql
+    app: psql
   ports:
     - port: 5432
